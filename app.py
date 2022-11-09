@@ -4,9 +4,9 @@ import pandas as pd
 import pandas_datareader as web
 import datetime as dt
 
-from scklearn.preprocessing import MinMaxScaler
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, LSTM
+from sklearn.preprocessing import MinMaxScaler
+# from tensorflow.keras.models import Sequential
+# from tensorflow.keras.layers import Dense, Dropout, LSTM
 
 company = "TSLA"
 
@@ -16,7 +16,7 @@ end = dt.datetime(2022, 1, 1)
 data = web.DataReader(company, 'yahoo', start, end)
 
 scaler = MinMaxScaler(feature_range=(0, 1))
-scaled_data = scaler.fittransform(data["Close"].values.reshape(-1, 1))
+scaled_data = scaler.fit_transform(data["Close"].values.reshape(-1, 1))
 
 prediction_days = 60
 
